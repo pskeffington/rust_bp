@@ -1,0 +1,118 @@
+{
+  "review_date": "2026-11-24",
+  "review_depth": "abstract/landing-page seed review",
+  "sources": [
+    {
+      "id": "S01",
+      "title": "Jung et al. (2018), RustBelt: Securing the Foundations of the Rust Programming Language, POPL",
+      "url": "https://doi.org/10.1145/3158154",
+      "evidence_class": "peer-reviewed formal proof",
+      "limitations": "Soundness of a modeled subset and obligations for unsafe abstractions; not a proof of arbitrary Rust applications."
+    },
+    {
+      "id": "S02",
+      "title": "Qin et al. (2020), Understanding memory and thread safety practices and issues in real-world Rust programs, PLDI",
+      "url": "https://doi.org/10.1145/3385412.3386036",
+      "evidence_class": "peer-reviewed empirical",
+      "limitations": "Observed unsafe and concurrency bugs in selected projects; not population-wide prevalence."
+    },
+    {
+      "id": "S03",
+      "title": "Evans, Campbell & Soffa (2020), Is Rust Used Safely by Software Developers?, ICSE",
+      "url": "https://2020.icse-conferences.org/details/icse-2020-papers/68/Is-Rust-Used-Safely-by-Software-Developers-",
+      "evidence_class": "peer-reviewed empirical",
+      "limitations": "Unsafe code can be reached transitively; historical ecosystem sample, not a current rate."
+    },
+    {
+      "id": "S04",
+      "title": "Jung et al. (2020), Stacked Borrows: An Aliasing Model for Rust, POPL",
+      "url": "https://doi.org/10.1145/3371109",
+      "evidence_class": "peer-reviewed formal model",
+      "limitations": "Aliasing model and optimization justification; not the final normative language specification."
+    },
+    {
+      "id": "S05",
+      "title": "Bae et al. (2021), Rudra: Finding Memory Safety Bugs in Rust at the Ecosystem Scale, SOSP",
+      "url": "https://doi.org/10.1145/3477132.3483570",
+      "evidence_class": "peer-reviewed tool evaluation",
+      "limitations": "Static analysis detects subtle unsafe defects; no guarantee of completeness."
+    },
+    {
+      "id": "S06",
+      "title": "Jung et al. (2026), Miri: Practical Undefined Behavior Detection for Rust, POPL",
+      "url": "https://doi.org/10.1145/3776690",
+      "evidence_class": "peer-reviewed tool evaluation",
+      "limitations": "Dynamic UB detection for executed paths with platform/API limitations; passing tests do not prove soundness."
+    },
+    {
+      "id": "S07",
+      "title": "Understanding and Detecting Real-World Safety Issues in Rust (2024), IEEE TSE 50(6)",
+      "url": "https://ieeexplore.ieee.org/abstract/document/10479047/authors",
+      "evidence_class": "peer-reviewed empirical/tool evaluation",
+      "limitations": "Memory bugs, concurrency bugs and unintended panics motivate explicit failure-path tests; selected projects."
+    },
+    {
+      "id": "R01",
+      "title": "Rust Reference: Behavior considered undefined",
+      "url": "https://doc.rust-lang.org/reference/behavior-considered-undefined.html",
+      "evidence_class": "official language reference",
+      "limitations": "Reference for UB restrictions; list not exhaustive."
+    },
+    {
+      "id": "R02",
+      "title": "Rust API Guidelines",
+      "url": "https://rust-lang.github.io/api-guidelines/",
+      "evidence_class": "ecosystem guidance",
+      "limitations": "Naming, interoperability, documentation and API design conventions; not a formal proof."
+    },
+    {
+      "id": "R03",
+      "title": "The Rust Programming Language: Error Handling",
+      "url": "https://doc.rust-lang.org/book/ch09-00-error-handling.html",
+      "evidence_class": "official instructional guidance",
+      "limitations": "Recoverable versus unrecoverable errors; policy below is stricter than language requirements."
+    },
+    {
+      "id": "R04",
+      "title": "Cargo Book: Manifest format",
+      "url": "https://doc.rust-lang.org/cargo/reference/manifest.html",
+      "evidence_class": "official tool reference",
+      "limitations": "Edition, rust-version, metadata and manifest configuration."
+    },
+    {
+      "id": "R05",
+      "title": "Cargo Book: Continuous Integration",
+      "url": "https://doc.rust-lang.org/cargo/guide/continuous-integration.html",
+      "evidence_class": "official tool guidance",
+      "limitations": "Build and test in CI; target coverage must follow application support."
+    },
+    {
+      "id": "R06",
+      "title": "Clippy documentation",
+      "url": "https://doc.rust-lang.org/clippy/",
+      "evidence_class": "official tool reference",
+      "limitations": "Lint rules catch classes of mistakes; not a correctness proof."
+    },
+    {
+      "id": "R07",
+      "title": "RustSec Advisory Database",
+      "url": "https://rustsec.org/",
+      "evidence_class": "ecosystem security guidance",
+      "limitations": "Known advisories and lockfile auditing; unknown vulnerabilities remain."
+    },
+    {
+      "id": "R08",
+      "title": "Rust Fuzz Book",
+      "url": "https://rust-fuzz.github.io/book/",
+      "evidence_class": "ecosystem tool guidance",
+      "limitations": "Coverage-guided and structure-aware fuzzing; finite budget cannot establish absence of defects."
+    },
+    {
+      "id": "R09",
+      "title": "Rustfmt",
+      "url": "https://github.com/rust-lang/rust/blob/main/src/tools/rustfmt/README.md",
+      "evidence_class": "official tool guidance",
+      "limitations": "Canonical formatting tool; pin toolchain for reproducibility."
+    }
+  ]
+}

@@ -1,0 +1,183 @@
+{
+  "version": "0.1",
+  "rules": [
+    {
+      "id": "RB01",
+      "domain": "Ownership and memory",
+      "level": "MUST",
+      "requirement": "Prefer safe Rust; model ownership explicitly, borrow instead of cloning unless ownership or measured performance warrants it; no leaking resources for convenience.",
+      "sources": [
+        "S01",
+        "S02",
+        "R01"
+      ],
+      "evidence": "Review lifetime/ownership boundaries and resource-drop tests."
+    },
+    {
+      "id": "RB02",
+      "domain": "Unsafe and FFI",
+      "level": "MUST",
+      "requirement": "Isolate unsafe in narrow reviewed modules; document every unsafe operation's safety invariant, provenance, alignment, initialization, aliasing, ABI and lifetime as applicable. Enable unsafe_op_in_unsafe_fn lint; forbid unsafe in safe-only crates. Never introduce unsafe solely to appease borrow checker.",
+      "sources": [
+        "S01",
+        "S03",
+        "S04",
+        "S05",
+        "R01"
+      ],
+      "evidence": "Inventory unsafe incl. generated/native code; reviewer checks invariants; Miri on compatible tests plus native boundary tests."
+    },
+    {
+      "id": "RB03",
+      "domain": "Errors and panics",
+      "level": "MUST",
+      "requirement": "Return Result for recoverable failures, Option for absence; propagate with context; no unchecked unwrap/expect/indexing on untrusted input or routine I/O. Justified invariant assertions and tests are permitted.",
+      "sources": [
+        "S07",
+        "R03"
+      ],
+      "evidence": "Negative tests: malformed input, missing data, overflow, I/O failures; review panic paths."
+    },
+    {
+      "id": "RB04",
+      "domain": "Types and API",
+      "level": "MUST",
+      "requirement": "Use domain types/enums for invalid-state prevention, explicit units, bounded input, documented public API and minimal visibility; preserve semver contracts.",
+      "sources": [
+        "S01",
+        "R02"
+      ],
+      "evidence": "API review and doc tests; boundary tests."
+    },
+    {
+      "id": "RB05",
+      "domain": "Concurrency and async",
+      "level": "MUST",
+      "requirement": "Define lock order, bounded queues, backpressure, cancellation and shutdown. Avoid holding locks across await unless justified; isolate blocking work from async executors and surface task failures.",
+      "sources": [
+        "S02",
+        "S07"
+      ],
+      "evidence": "Timeout, cancellation, saturation, ordering and shutdown tests; model-check sensitive interleavings where feasible."
+    },
+    {
+      "id": "RB06",
+      "domain": "Formatting and lints",
+      "level": "MUST",
+      "requirement": "Use rustfmt and Clippy; new warnings fail CI. Suppress individual lints only with reason/scope; do not blanket enable pedantic or suppress all warnings.",
+      "sources": [
+        "R06",
+        "R09"
+      ],
+      "evidence": "cargo fmt --all -- --check; cargo clippy for supported targets/features with -D warnings."
+    },
+    {
+      "id": "RB07",
+      "domain": "Correctness tests",
+      "level": "MUST",
+      "requirement": "Write unit, integration, regression and doc tests as applicable, including edge cases; use property tests for invariants and fuzz untrusted parsers. Reproduce each fixed bug before/with fix.",
+      "sources": [
+        "S02",
+        "S05",
+        "S07",
+        "R05",
+        "R08"
+      ],
+      "evidence": "Record commands, seeds, input corpus, outcomes; tests run on intended feature matrix."
+    },
+    {
+      "id": "RB08",
+      "domain": "Unsafe dynamic checks",
+      "level": "CONDITIONAL",
+      "requirement": "Run pinned-nightly Miri on compatible unsafe/FFI wrapper tests; native sanitizers or hardware tests where Miri cannot execute; do not treat either as proof.",
+      "sources": [
+        "S04",
+        "S05",
+        "S06",
+        "R01"
+      ],
+      "evidence": "Miri logs or BLOCKED with alternative and review; no false N/A."
+    },
+    {
+      "id": "RB09",
+      "domain": "Cargo and reproducibility",
+      "level": "MUST",
+      "requirement": "Declare edition and supported rust-version; pin tested toolchain for release; commit lockfile for applications and CI reproducibility, test dependency resolution for libraries where needed; minimize enabled features.",
+      "sources": [
+        "R04",
+        "R05"
+      ],
+      "evidence": "Locked builds/tests; MSRV test where claimed; record rustc -Vv and cargo -V."
+    },
+    {
+      "id": "RB10",
+      "domain": "Dependencies and supply chain",
+      "level": "MUST",
+      "requirement": "Review direct/transitive crates, unsafe and native dependencies, build scripts/proc macros, licenses and advisory findings; avoid unexplained new runtime dependencies. Never run untrusted code with secrets.",
+      "sources": [
+        "S03",
+        "S05",
+        "R07"
+      ],
+      "evidence": "cargo tree, cargo audit, license/provenance review; unresolved material risk blocks release."
+    },
+    {
+      "id": "RB11",
+      "domain": "Performance",
+      "level": "MUST",
+      "requirement": "Establish workload, baseline and budget before optimization; measure release builds on equivalent hardware/input; avoid speculative unsafe, allocations or clones; report distributions and regressions.",
+      "sources": [
+        "S04",
+        "R02"
+      ],
+      "evidence": "Record benchmark commands, toolchain, hardware, repetitions and uncertainty; no universal speed claims."
+    },
+    {
+      "id": "RB12",
+      "domain": "Portability",
+      "level": "MUST",
+      "requirement": "Declare supported OS/architectures and feature combinations; isolate platform bindings and native dependencies; validate runtime on supported targets, not merely cross-compile.",
+      "sources": [
+        "R04",
+        "R05"
+      ],
+      "evidence": "Mac/Linux target matrix and actual runtime evidence; mark unavailable target BLOCKED."
+    },
+    {
+      "id": "RB13",
+      "domain": "Observability and data protection",
+      "level": "MUST",
+      "requirement": "Use structured logs, error context and bounded telemetry without secrets, personal data or unbounded payloads; validate external inputs and apply least privilege.",
+      "sources": [
+        "S07",
+        "R03",
+        "R07"
+      ],
+      "evidence": "Redaction, limit, malformed input and failure-path tests; security review."
+    },
+    {
+      "id": "RB14",
+      "domain": "Release and evidence",
+      "level": "MUST",
+      "requirement": "Independent review for material changes; record commit, policy SHA, commands, target, tests, artifacts/digests, findings and approvals; no claims based solely on compilation.",
+      "sources": [
+        "R05",
+        "R06",
+        "R07"
+      ],
+      "evidence": "Release dossier and PASS/FAIL/BLOCKED per applicable gate; human approval for production."
+    },
+    {
+      "id": "RB15",
+      "domain": "Real-time and numerical profiles",
+      "level": "CONDITIONAL",
+      "requirement": "For audio/SDR callbacks avoid blocking, allocation and unbounded work; measure overruns and latency. For scientific code specify units, overflow, NaN/Inf, tolerances and reference results.",
+      "sources": [
+        "S02",
+        "S07",
+        "R02"
+      ],
+      "evidence": "Native device/latency tests or numerical reference fixtures; hardware-dependent claims blocked until observed."
+    }
+  ]
+}

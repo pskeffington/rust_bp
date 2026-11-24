@@ -1,2 +1,12 @@
-# rust_bp
-rust best practices for coding practices 
+# Rust Best Practices (rust_bp)
+
+Canonical source-linked Rust engineering policy for all agents and projects. Initial baseline v0.1 (2026-11-24); independent review and runtime adoption pending.
+
+- [Engineering standard](standards/RUST_STANDARD.md) — RB01–RB15.
+- [Literature matrix](research/LITERATURE_MATRIX.md) — scholarly and official evidence, limitations and review protocol.
+- [Acceptance gates](standards/QUALITY_GATES.md) — build, lint, tests, safety, portability and release.
+- [Agent contract](AGENTS.md) — consumption, provenance and exceptions.
+- [Machine-readable rules](data/rules.json) and [sources](data/literature.json).
+- [Roadmap](ROADMAP.md) — staged rollout and evidence.
+
+Use an approved immutable commit SHA in each task; do not copy policy text into consumers. This repository contains standards, not an application. No application tests or releases are implied.
