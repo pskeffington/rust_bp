@@ -1,4 +1,4 @@
-# Rust engineering standard — v0.1
+# Rust engineering standard — v0.2
 
 MUST = mandatory when applicable; CONDITIONAL = required when trigger applies. Exceptions require owner, rationale, alternative control, expiry and independent approval. A missing check is BLOCKED, not PASS. Official language semantics supersede local guidance; safety/security and human-approved project constraints remain authoritative.
 
@@ -19,5 +19,10 @@ MUST = mandatory when applicable; CONDITIONAL = required when trigger applies. E
 | RB13 | Observability and data protection | MUST | Use structured logs, error context and bounded telemetry without secrets, personal data or unbounded payloads; validate external inputs and apply least privilege. | S07,R03,R07 | Redaction, limit, malformed input and failure-path tests; security review. |
 | RB14 | Release and evidence | MUST | Independent review for material changes; record commit, policy SHA, commands, target, tests, artifacts/digests, findings and approvals; no claims based solely on compilation. | R05,R06,R07 | Release dossier and PASS/FAIL/BLOCKED per applicable gate; human approval for production. |
 | RB15 | Real-time and numerical profiles | CONDITIONAL | For audio/SDR callbacks avoid blocking, allocation and unbounded work; measure overruns and latency. For scientific code specify units, overflow, NaN/Inf, tolerances and reference results. | S02,S07,R02 | Native device/latency tests or numerical reference fixtures; hardware-dependent claims blocked until observed. |
+| RB16 | Human-readable source and comments | MUST | Treat human comprehension as a release requirement. Use descriptive names, explicit control flow, purposeful comments and searchable stable section headings for long logical blocks. Explain rationale, invariants, units, assumptions, failure behavior and non-obvious tradeoffs; never paraphrase obvious syntax. Update comments with behavior. | S08,S09,S10,R12 | Independent reviewer locates and explains changed behavior from source; no stale or misleading comments; see HUMAN_MAINTAINABILITY.md. |
+| RB17 | Rustdoc and architecture navigation | MUST | Document crate/module responsibilities, public API contracts and non-obvious private behavior; include examples and applicable Errors, Panics and Safety sections. Maintain entry-point and data-flow maps, configuration and dependency boundaries, and links to tests. | S09,S10,R10,R11,R13 | Rustdoc builds with warnings denied; doctests run; reviewer traces an entry point to implementation, tests and config. |
+| RB18 | Long-term modification and handoff | MUST | Prefer simple cohesive functions and modules, limited abstraction, named domain constants and explicit ownership. Record design decisions, build/run/debug/test commands, supported targets, deployment and rollback, generated-source provenance and known limitations. No AI-only knowledge dependency. | S08,S10,R10,R12 | Independent maintainer performs a bounded change-and-test exercise from repository documentation; human acceptance for release; no runtime or deployment claims without evidence. |
+
+Human maintainability is a primary acceptance requirement; [mandatory commentary and H1 contract](HUMAN_MAINTAINABILITY.md).
 
 Sources: [Literature matrix](../research/LITERATURE_MATRIX.md). Machine-readable: [rules](../data/rules.json).

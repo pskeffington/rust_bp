@@ -113,6 +113,55 @@
       "url": "https://github.com/rust-lang/rust/blob/main/src/tools/rustfmt/README.md",
       "evidence_class": "official tool guidance",
       "limitations": "Canonical formatting tool; pin toolchain for reproducibility."
+    },
+    {
+      "id": "S08",
+      "title": "Buse & Weimer (2010), Learning a Metric for Code Readability, IEEE TSE 36(4), 546–558",
+      "url": "https://doi.org/10.1109/TSE.2009.70",
+      "evidence_class": "peer-reviewed empirical",
+      "limitations": "Bibliographic record verified; companion ISSTA 2008 study associates local code features with human readability judgments and quality indicators. Not Rust-specific or a causal proof."
+    },
+    {
+      "id": "S09",
+      "title": "Pascarella, Bruntink & Bacchelli (2019), Classifying code comments in Java software systems, Empirical Software Engineering",
+      "url": "https://doi.org/10.1007/s10664-019-09694-w",
+      "evidence_class": "peer-reviewed empirical",
+      "limitations": "Abstract verified; taxonomy from 14 Java projects and over 40,000 classified comment lines. Supports differentiating purposes of comments, not a required comment density."
+    },
+    {
+      "id": "S10",
+      "title": "Sillito, Murphy & De Volder (2008), Asking and Answering Questions during a Programming Change Task, IEEE TSE 34(4), 434–451",
+      "url": "https://doi.org/10.1109/TSE.2008.26",
+      "evidence_class": "peer-reviewed qualitative",
+      "limitations": "Abstract verified; two qualitative studies identify 44 types of questions during change tasks. Supports task-oriented navigation and handoff, not a validated Rust-specific threshold."
+    },
+    {
+      "id": "R10",
+      "title": "Rustdoc Book: How to write documentation",
+      "url": "https://doc.rust-lang.org/rustdoc/how-to-write-documentation.html",
+      "evidence_class": "official tool guidance",
+      "limitations": "Public API summaries, examples and behavioral documentation; source checked."
+    },
+    {
+      "id": "R11",
+      "title": "Rust API Guidelines: Documentation",
+      "url": "https://rust-lang.github.io/api-guidelines/documentation.html",
+      "evidence_class": "ecosystem guidance",
+      "limitations": "Crate documentation, examples and applicable Errors/Panics/Safety sections; source checked."
+    },
+    {
+      "id": "R12",
+      "title": "Google Rust Style Guide",
+      "url": "https://google.github.io/styleguide/rustguide.html",
+      "evidence_class": "industry guidance",
+      "limitations": "Public documentation, meaningful comments and invariants; not scholarly causal evidence."
+    },
+    {
+      "id": "R13",
+      "title": "Linux kernel Rust coding guidelines",
+      "url": "https://www.kernel.org/doc/html/v6.15/rust/coding-guidelines.html",
+      "evidence_class": "project-specific industry guidance",
+      "limitations": "Explicit SAFETY comments and safety preconditions; adopted as local policy, not a claim of universal applicability."
     }
   ]
 }

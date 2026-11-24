@@ -1,5 +1,5 @@
 {
-  "version": "0.1",
+  "version": "0.2",
   "rules": [
     {
       "id": "RB01",
@@ -178,6 +178,46 @@
         "R02"
       ],
       "evidence": "Native device/latency tests or numerical reference fixtures; hardware-dependent claims blocked until observed."
+    },
+    {
+      "id": "RB16",
+      "domain": "Human-readable source and comments",
+      "level": "MUST",
+      "requirement": "Treat human comprehension as a release requirement. Use descriptive names, explicit control flow, purposeful comments and searchable stable section headings for long logical blocks. Explain rationale, invariants, units, assumptions, failure behavior and non-obvious tradeoffs; never paraphrase obvious syntax. Update comments with behavior.",
+      "sources": [
+        "S08",
+        "S09",
+        "S10",
+        "R12"
+      ],
+      "evidence": "Independent reviewer locates and explains changed behavior from source; no stale or misleading comments; see HUMAN_MAINTAINABILITY.md."
+    },
+    {
+      "id": "RB17",
+      "domain": "Rustdoc and architecture navigation",
+      "level": "MUST",
+      "requirement": "Document crate/module responsibilities, public API contracts and non-obvious private behavior; include examples and applicable Errors, Panics and Safety sections. Maintain entry-point and data-flow maps, configuration and dependency boundaries, and links to tests.",
+      "sources": [
+        "S09",
+        "S10",
+        "R10",
+        "R11",
+        "R13"
+      ],
+      "evidence": "Rustdoc builds with warnings denied; doctests run; reviewer traces an entry point to implementation, tests and config."
+    },
+    {
+      "id": "RB18",
+      "domain": "Long-term modification and handoff",
+      "level": "MUST",
+      "requirement": "Prefer simple cohesive functions and modules, limited abstraction, named domain constants and explicit ownership. Record design decisions, build/run/debug/test commands, supported targets, deployment and rollback, generated-source provenance and known limitations. No AI-only knowledge dependency.",
+      "sources": [
+        "S08",
+        "S10",
+        "R10",
+        "R12"
+      ],
+      "evidence": "Independent maintainer performs a bounded change-and-test exercise from repository documentation; human acceptance for release; no runtime or deployment claims without evidence."
     }
   ]
 }
